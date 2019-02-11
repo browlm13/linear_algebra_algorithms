@@ -74,8 +74,6 @@ def column_oriented_backward_substitution(U,y):
 		y[j] = y[j]/U[j,j]
 		for i in range(j):
 			y[i] -= U[i,j]*y[j]
-		
-		
 	return y
 
 #
