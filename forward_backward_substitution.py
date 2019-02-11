@@ -1,9 +1,6 @@
 
 """
 	Forward / Backward Substitution - row / column oriented
-	Gausian Elimination
-
-
 """
 
 import numpy as np
@@ -13,7 +10,6 @@ import numpy as np
 #
 
 def row_oriented_forward_substitution(L,b):
-
 	for i in range(L.shape[0]): 
 		for j in range(i):
 			b[i] -= L[i,j]*b[j]
@@ -35,7 +31,6 @@ def row_oriented_forward_substitution(L,b):
 
 
 def column_oriented_forward_substitution(L,b):
-
 	for j in range(L.shape[1]): 
 		b[j] = b[j]/L[j,j]
 		for i in range(j+1,L.shape[0]):
@@ -48,7 +43,6 @@ def column_oriented_forward_substitution(L,b):
 #
 
 def row_oriented_backward_substitution(U,y):
-
 	for i in range(U.shape[0]-1,-1,-1): 
 		for j in range(i+1, U.shape[1]):
 			y[i] -= U[i,j]*y[j]
@@ -68,7 +62,7 @@ def row_oriented_backward_substitution(U,y):
 		
 	return x
 	"""
-
+	
 def column_oriented_backward_substitution(U,y):
 	for j in range(U.shape[1]-1,-1,-1):
 		y[j] = y[j]/U[j,j]
@@ -85,23 +79,20 @@ if __name__ == "__main__":
 	# create random matrix
 	n = 5
 	R = np.random.rand(n,n)*np.random.randint(low=1, high=100) # random matrix
-
-	#print(R)
-
+	
 	# Get upper part for upper and lower triangular matrices
 	U = np.triu(R, 0) 
 	L = np.tril(R, 0)
 
-
 	# create random x
 	x_true = np.random.rand(n)*np.random.randint(low=1, high=100)
-
+	
 	# find b and y 
 	b1 = L @ x_true
 	b2 = L @ x_true
 	y1 = U @ x_true
 	y2 = U @ x_true
-
+	
 	# test substitution methods
 	x_rf = row_oriented_forward_substitution(L,b1)
 	x_cf = column_oriented_forward_substitution(L,b2)
