@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 """
 	Forward / Backward Substitution - Row / Column Oriented
@@ -130,7 +131,7 @@ if __name__ == "__main__":
 	x_rb = row_oriented_backward_substitution(U,y1)
 	x_cb = column_oriented_backward_substitution(U,y2)
 
-	# display errors
+	# display average errors
 	print(np.average(abs(x_true - x_rf)))
 	print(np.average(abs(x_true - x_cf)))
 	print(np.average(abs(x_true - x_rb)))
