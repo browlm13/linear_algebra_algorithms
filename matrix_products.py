@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 """
 
@@ -68,6 +69,3 @@ if __name__ == "__main__":
 	B_true = A @ X
 
 	print(B-B_true)
-
-	
-
