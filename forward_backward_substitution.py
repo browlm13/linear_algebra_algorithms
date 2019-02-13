@@ -68,7 +68,7 @@ def column_oriented_forward_substitution(L,b):
 def unit_row_oriented_forward_substitution(L,b):
 
 	for i in range(L.shape[0]): 
-		for j in range(i-1):
+		for j in range(i):
 			b[i] -= L[i,j]*b[j]
 	return b
 
@@ -76,7 +76,7 @@ def unit_row_oriented_forward_substitution(L,b):
 def unit_column_oriented_forward_substitution(L,b):
 
 	for j in range(L.shape[1]): 
-		for i in range(j,L.shape[0]):
+		for i in range(j+1,L.shape[0]):
 			b[i] -= L[i,j]*b[j]
 
 	return b
@@ -160,10 +160,11 @@ if __name__ == "__main__":
 
 	b3 = L_unit @ x_true
 	b4 = L_unit @ x_true
+	b5 = L_unit @ x_true
 
 	x_urf = unit_row_oriented_forward_substitution(L, b3) # asumes unit lower triangular
 	x_ucf = unit_column_oriented_forward_substitution(L, b4) # asumes unit lower triangular
-	x_ul_true = row_oriented_forward_substitution(L_unit, b3) # passed actual lower priangular
+	x_ul_true = row_oriented_forward_substitution(L_unit, b5) # passed actual lower priangular
 
 	print(np.average(abs(x_urf - x_ul_true)))
-	print(np.average(abs(x_urf - x_ul_true)))
+	print(np.average(abs(x_ucf - x_ul_true)))
